@@ -1,1 +1,0 @@
-console.log('Siber güvenlik araştırmaları sayfasındasınız...')
