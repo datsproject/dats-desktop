@@ -1,16 +1,24 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
+let win = null;
+
 const createWindow = () => {
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 1024,
         height: 768,
         webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        autoHideMenuBar: true
     })
 
-    win.loadFile('index.html')
+
+    win.loadFile(path.join(__dirname + '/pages/register.html'));
+
+
 }
 
 app.whenReady().then(() => {
@@ -21,6 +29,10 @@ app.whenReady().then(() => {
             createWindow()
         }
     })
+
+    ipcMain.on("key", (err, data) => {
+        require('electron').shell.openExternal('http://localhost:9011/');
+    });
 })
 
 app.on('window-all-closed', () => {
