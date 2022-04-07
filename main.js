@@ -1,37 +1,36 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const { createAuthWindow } = require("./main/auth-process");
+const createAppWindow = require("./main/app-process");
+const authService = require("./services/auth-service");
 
-let win = null;
+async function showWindow() {
 
-const createWindow = () => {
-    win = new BrowserWindow({
-        width: 1024,
-        height: 768,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-            preload: path.join(__dirname, 'preload.js')
-        },
-        autoHideMenuBar: true
-    })
+    return createAppWindow();
 
-
-    win.loadFile(path.join(__dirname + '/pages/register.html'));
-
-
+    /*
+    try {
+        await authService.refreshTokens();
+        return createAppWindow();
+    } catch (err) {
+        createAuthWindow();
+    }
+    */
 }
 
-app.whenReady().then(() => {
-    createWindow()
 
+app.whenReady().then(() => {
+    //createWindow()
+    showWindow();
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow()
+            //createWindow()
+            showWindow();
         }
-    })
+    });
 
-    ipcMain.on("key", (err, data) => {
-        require('electron').shell.openExternal('http://localhost:9011/');
+    ipcMain.on("signatureRequest", (err, data) => {
+        //require('electron').shell.openExternal(`http://localhost:9011?message=${data}`);
     });
 })
 

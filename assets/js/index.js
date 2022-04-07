@@ -1,426 +1,141 @@
-$(function() {
-	"use strict";
-	var e = {
-		series: [{
-			name: "Revenue",
-			data: [240, 160, 671, 414, 555, 257, 901, 613, 727, 414, 555, 257]
-		}],
-		chart: {
-			type: "line",
-			height: 65,
-			toolbar: {
-				show: !1
-			},
-			zoom: {
-				enabled: !1
-			},
-			dropShadow: {
-				enabled: 0,
-				top: 3,
-				left: 14,
-				blur: 4,
-				opacity: .12,
-				color: "#fff"
-			},
-			sparkline: {
-				enabled: !0
-			}
-		},
-		markers: {
-			size: 0,
-			colors: ["#fff"],
-			strokeColors: "#fff",
-			strokeWidth: 2,
-			hover: {
-				size: 7
-			}
-		},
-		dataLabels: {
-			enabled: !1
-		},
-		stroke: {
-			show: !0,
-			width: 3,
-			curve: "smooth"
-		},
-		colors: ["#fff"],
-		xaxis: {
-			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-		},
-		fill: {
-			opacity: 1
-		},
-		tooltip: {
-			theme: "dark",
-			fixed: {
-				enabled: !1
-			},
-			x: {
-				show: !1
-			},
-			y: {
-				title: {
-					formatter: function(e) {
-						return ""
-					}
-				}
-			},
-			marker: {
-				show: !1
-			}
-		}
-	};
-	new ApexCharts(document.querySelector("#chart1"), e).render();
-	e = {
-		series: [{
-			name: "Customers",
-			data: [240, 160, 671, 414, 555, 257, 901, 613, 727, 414, 555, 257]
-		}],
-		chart: {
-			type: "line",
-			height: 65,
-			toolbar: {
-				show: !1
-			},
-			zoom: {
-				enabled: !1
-			},
-			dropShadow: {
-				enabled: 0,
-				top: 3,
-				left: 14,
-				blur: 4,
-				opacity: .12,
-				color: "#fff"
-			},
-			sparkline: {
-				enabled: !0
-			}
-		},
-		markers: {
-			size: 0,
-			colors: ["#fff"],
-			strokeColors: "#fff",
-			strokeWidth: 2,
-			hover: {
-				size: 7
-			}
-		},
-		dataLabels: {
-			enabled: !1
-		},
-		stroke: {
-			show: !0,
-			width: 3,
-			curve: "smooth"
-		},
-		colors: ["#fff"],
-		xaxis: {
-			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-		},
-		fill: {
-			opacity: 1
-		},
-		tooltip: {
-			theme: "dark",
-			fixed: {
-				enabled: !1
-			},
-			x: {
-				show: !1
-			},
-			y: {
-				title: {
-					formatter: function(e) {
-						return ""
-					}
-				}
-			},
-			marker: {
-				show: !1
-			}
-		}
-	};
-	new ApexCharts(document.querySelector("#chart2"), e).render();
-	e = {
-		series: [{
-			name: "Store Visitores",
-			data: [240, 160, 671, 414, 555, 257, 901, 613, 727, 414, 555, 257]
-		}],
-		chart: {
-			type: "line",
-			height: 65,
-			toolbar: {
-				show: !1
-			},
-			zoom: {
-				enabled: !1
-			},
-			dropShadow: {
-				enabled: 0,
-				top: 3,
-				left: 14,
-				blur: 4,
-				opacity: .12,
-				color: "#fff"
-			},
-			sparkline: {
-				enabled: !0
-			}
-		},
-		markers: {
-			size: 0,
-			colors: ["#fff"],
-			strokeColors: "#fff",
-			strokeWidth: 2,
-			hover: {
-				size: 7
-			}
-		},
-		dataLabels: {
-			enabled: !1
-		},
-		stroke: {
-			show: !0,
-			width: 3,
-			curve: "smooth"
-		},
-		colors: ["#fff"],
-		xaxis: {
-			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-		},
-		fill: {
-			opacity: 1
-		},
-		tooltip: {
-			theme: "dark",
-			fixed: {
-				enabled: !1
-			},
-			x: {
-				show: !1
-			},
-			y: {
-				title: {
-					formatter: function(e) {
-						return ""
-					}
-				}
-			},
-			marker: {
-				show: !1
-			}
-		}
-	};
-	new ApexCharts(document.querySelector("#chart3"), e).render();
-    e = {
-        series: [{
-            name: "Store Visitores",
-            data: [240, 160, 671, 414, 555, 257, 901, 613, 727, 414, 555, 257]
-        }],
-        chart: {
-            type: "line",
-            height: 65,
-            toolbar: {
-                show: !1
-            },
-            zoom: {
-                enabled: !1
-            },
-            dropShadow: {
-                enabled: 0,
-                top: 3,
-                left: 14,
-                blur: 4,
-                opacity: .12,
-                color: "#fff"
-            },
-            sparkline: {
-                enabled: !0
-            }
-        },
-        markers: {
-            size: 0,
-            colors: ["#fff"],
-            strokeColors: "#fff",
-            strokeWidth: 2,
-            hover: {
-                size: 7
-            }
-        },
-        dataLabels: {
-            enabled: !1
-        },
-        stroke: {
-            show: !0,
-            width: 3,
-            curve: "smooth"
-        },
-        colors: ["#fff"],
-        xaxis: {
-            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        },
-        fill: {
-            opacity: 1
-        },
-        tooltip: {
-            theme: "dark",
-            fixed: {
-                enabled: !1
-            },
-            x: {
-                show: !1
-            },
-            y: {
-                title: {
-                    formatter: function(e) {
-                        return ""
-                    }
-                }
-            },
-            marker: {
-                show: !1
-            }
-        }
-    };
-    new ApexCharts(document.querySelector("#chart3_1"), e).render();
-    e = {
-		series: [{
-			name: "Cyber Security Research ( 10 )",
-			data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-		}, {
-			name: "DDos Test ( 60 )",
-			data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-		}, {
-			name: "Super Computer ( 12 )",
-			data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-		}],
-		chart: {
-			foreColor: "#9ba7b2",
-			type: "bar",
-			height: 300,
-			toolbar: {
-				show: !1
-			}
-		},
-		plotOptions: {
-			bar: {
-				horizontal: !1,
-				columnWidth: "55%",
-				endingShape: "rounded"
-			}
-		},
-        grid: {
-			borderColor: 'rgba(255, 255, 255, 0.12)',
-            show: true,
-		},
-		dataLabels: {
-			enabled: !1
-		},
-		stroke: {
-			show: !0,
-			width: 2,
-			colors: ["transparent"]
-		},
-		colors: ["rgba(255, 255, 255, 0.60)", "#fff", "rgba(255, 255, 255, 0.25)"],
-		xaxis: {
-			categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
-		},
-		fill: {
-			opacity: 1
-		},
-		tooltip: {
-			theme: "dark",
-			y: {
-				formatter: function(e) {
-					return "$ " + e + " thousands"
-				}
-			}
-		}
-	};
-	new ApexCharts(document.querySelector("#chart4"), e).render();
-	e = {
-		series: [{
-			name: "Pageviews",
-			data: [332, 540, 160, 240, 160, 671, 355, 671, 414, 555, 257, 901, 613]
-		}],
-		chart: {
-			type: "area",
-			height: 250,
-			toolbar: {
-				show: !1
-			},
-			zoom: {
-				enabled: !1
-			},
-			dropShadow: {
-				enabled: !1,
-				top: 3,
-				left: 14,
-				blur: 4,
-				opacity: .12,
-				color: "#fff"
-			},
-			sparkline: {
-				enabled: !0
-			}
-		},
-		markers: {
-			size: 0,
-			colors: ["#fff"],
-			strokeColors: "#fff",
-			strokeWidth: 2,
-			hover: {
-				size: 7
-			}
-		},
-		dataLabels: {
-			enabled: !1
-		},
-		stroke: {
-			show: !0,
-			width: 2,
-			curve: "smooth"
-		},
-		fill: {
-		  type: 'gradient',
-		  gradient: {
-			shade: 'light',
-			type: "vertical",
-			shadeIntensity: 0.5,
-			gradientToColors: ["#fff"],
-			inverseColors: true,
-			opacityFrom: 0.2,	
-			opacityTo: 0.5,
-			stops: [0, 50, 100],
-			colorStops: []
-		  }
-		},
-		colors: ["#fff"],
-		xaxis: {
-			categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-		},
-		tooltip: {
-			theme: "dark",
-			fixed: {
-				enabled: !1
-			},
-			x: {
-				show: !1
-			},
-			y: {
-				title: {
-					formatter: function(e) {
-						return ""
-					}
-				}
-			},
-			marker: {
-				show: !1
-			}
-		}
-	};
-	new ApexCharts(document.querySelector("#chart13"), e).render();
+const electron = require('electron');
+const { ipcRenderer } = electron;
+const remote = require("@electron/remote");
+const axios = require("axios");
+const authService = remote.require("./services/auth-service");
+const authProcess = remote.require("./main/auth-process");
 
+const webContents = remote.getCurrentWebContents();
+
+const alertCountSpan = document.querySelector("#spanAlertCount");
+const notificationListDiv = document.querySelector("#divNotificationList");
+const notificationMessageH = document.querySelector("#hNotificationMessage");
+const notificationMessageDetailP = document.querySelector("#pNotificationMessageDetail");
+const connectToMetamaskButton = document.querySelector("#connectToMetamask");
+const connectedProfileDiv = document.querySelector("#connectedProfile");
+const accountAddressText = document.querySelector("#accountAddress");
+
+/*
+
+let metaMaskButton = document.querySelector('#metaMaskButton');
+metaMaskButton.addEventListener("click", () => {
+
+    let message = {
+        "wallet": localStorage.walletAddress,
+        "ddos": localStorage.ddos ? JSON.parse(localStorage.ddos) : null,
+        "cyber": localStorage.cyber ? JSON.parse(localStorage.cyber) : null,
+        "super": localStorage.super ? JSON.parse(localStorage.super) : null,
+        "vulnerability": localStorage.vulnerability ? JSON.parse(localStorage.vulnerability) : null,
+        "blockchain": localStorage.blockchain ? JSON.parse(localStorage.blockchain) : null
+    };
+
+    let buff = new Buffer(JSON.stringify(message));
+    let base64message = buff.toString('base64');
+
+    ipcRenderer.send("signatureRequest", base64message);
 
 });
+
+*/
+
+
+
+
+webContents.on("dom-ready", () => {
+    /*
+    console.log('"' + JSON.stringify(data) + '" converted to Base64 is "' + base64data + '"');
+
+    let decoded = new Buffer(base64data, 'base64');
+    console.log(decoded.toString());
+    
+    
+
+    const profile = authService.getProfile();
+    //console.log(profile);
+    document.getElementById("picture").src = profile.picture;
+    document.getElementById("fullname").innerText = profile.name;
+    !!document.getElementById("profilePicture") ? document.getElementById("profilePicture").src = profile.picture : false;
+    !!document.getElementById("profileFullname") ? document.getElementById("profileFullname").innerText = profile.name : false;
+    !!document.getElementById("txtFullname") ? document.getElementById("txtFullname").value = profile.name : false;
+    !!document.getElementById("txtEmail") ? document.getElementById("txtEmail").value = profile.email : false;
+*/
+
+
+    connectToMetamaskButton.click();
+    //checkMetamaskConnection(account);
+    checkNotifications();
+
+});
+
+document.getElementById("logout").addEventListener("click", () => {
+    authProcess.createLogoutWindow();
+    remote.getCurrentWindow().close();
+});
+
+
+connectToMetamaskButton.addEventListener('click', async() => {
+    let connectedAccount = await connectWC();
+    console.log("Connected Account: ", connectedAccount);
+    checkMetamaskConnection(connectedAccount);
+});
+
+function checkMetamaskConnection(acc) {
+    if (localStorage.walletconnect == undefined) {
+        connectToMetamaskButton.classList.remove("d-none");
+        connectedProfileDiv.classList.add("d-none");
+    } else {
+        !!acc ? accountAddressText.innerHTML = `${acc.substring(0,10)}..........${acc.slice(-10)}` : false;
+        connectToMetamaskButton.classList.add("d-none");
+        connectedProfileDiv.classList.remove("d-none");
+    }
+}
+
+
+function getUserMetadata(id) {
+    console.log(authService.getAccessToken());
+
+    axios.get(`https://${authService.getDomain()}/api/v2/users/${id}`, {
+            headers: {
+                Authorization: `Bearer ${authService.getAccessToken()}`,
+            },
+        })
+        .then((response) => {
+            console.log(response.data.user_metadata);
+        })
+        .catch((error) => {
+            if (error) throw new Error(error);
+        });
+}
+
+function checkNotifications() {
+    if (localStorage.notificationCount > 0) {
+        alertCountSpan.classList.add("alert-count");
+        alertCountSpan.innerHTML = 1;
+        notificationListDiv.classList.remove("invisible");
+        notificationMessageH.innerHTML = "İmzalanacak verileriniz var.";
+        //document.querySelector("#divNotificationList>.dropdown-item").href = "./pages/signature.html";
+        notificationMessageDetailP.innerHTML = ""; //`${localStorage.notificationCount} mesaj.`;
+    } else {
+        alertCountSpan.classList.remove("alert-count");
+        notificationListDiv.classList.add("invisible");
+    }
+}
+
+function savedSuccessNotify() {
+    Lobibox.notify('success', {
+        pauseDelayOnHover: true,
+        size: 'mini',
+        rounded: true,
+        icon: 'bx bx-check-circle',
+        delayIndicator: false,
+        continueDelayOnInactiveTab: false,
+        position: 'top right',
+        msg: 'Saved successfully.'
+    });
+}
+
+
+
+
+
+// WalletConnect

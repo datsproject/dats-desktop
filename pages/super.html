@@ -8,6 +8,7 @@
     <!--favicon-->
     <link rel="icon" href="../assets/images/favicon-32x32.png" type="image/png" />
     <!--plugins-->
+    <link rel="stylesheet" href="../assets/plugins/notifications/css/lobibox.min.css" />
     <link href="../assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="../assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
@@ -21,6 +22,9 @@
     <link href="../assets/css/app.css" rel="stylesheet">
     <link href="../assets/css/icons.css" rel="stylesheet">
     <title>Dats Project</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 
 <body class="bg-theme bg-theme1">
@@ -111,14 +115,9 @@
 
                     <div class="top-menu ms-auto">
                         <ul class="navbar-nav align-items-center">
-                            <li class="nav-item mobile-search-icon">
-                                <a class="nav-link" href="#"> <i class='bx bx-search'></i>
-                                </a>
-                            </li>
 
-                            <li class="nav-item dropdown dropdown-large">
-                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"> <i class='bx bx-category'></i>
+                            <!-- <li class="nav-item dropdown dropdown-large">
+                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class='bx bx-category'></i>
 
                                 </a>
 
@@ -146,42 +145,73 @@
                                         </div>
                                     </div>
                                 </div>
+                            </li> -->
+
+                            <li class="nav-item dropdown dropdown-large">
+                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true"> <span id="spanAlertCount" class="alert-count">7</span>
+                                    <i class="bx bx-bell"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="javascript:;">
+                                        <div class="msg-header">
+                                            <p class="msg-header-title">Notifications</p>
+                                        </div>
+                                    </a>
+                                    <div id="divNotificationList" class="header-notifications-list">
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-success text-success"><i class="bx bx-file"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 id="hNotificationMessage" class="msg-name">24 PDF File</h6>
+                                                    <p id="pNotificationMessageDetail" class="msg-info">The pdf files generated</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </li>
 
                         </ul>
                     </div>
 
-                    <div class="user-box dropdown">
-                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
-
+                    <div id="connectedProfile" class="user-box dropdown">
+                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img id="picture" src="../assets/images/metamask.png" class="user-img" alt="user avatar">
                             <div class="user-info ps-3">
-                                <p class="user-name mb-0">Ad Soyad</p>
-
-                                <p class="designattion mb-0">Seviye 1</p>
+                                <p id="accountAddress" class="user-name mb-0">Ad Soyad</p>
+                                <p class="designattion mb-0 text-green">Connected</p>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="javascript:;"><i
-                                        class="bx bx-user"></i><span>Profil</span></a>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bx bx-user"></i><span>Profil</span></a>
                             </li>
                             <li><a class="dropdown-item" href="javascript:;"><i
-                                        class="bx bx-cog"></i><span>Ayarlar</span></a>
+										class="bx bx-cog"></i><span>Ayarlar</span></a>
                             </li>
                             <li><a class="dropdown-item" href="javascript:;"><i
-                                        class='bx bx-home-circle'></i><span>Görevlerim</span></a>
+										class='bx bx-home-circle'></i><span>Görevlerim</span></a>
                             </li>
                             <li><a class="dropdown-item" href="javascript:;"><i
-                                        class='bx bx-dollar-circle'></i><span>Kazançlarım</span></a>
+										class='bx bx-dollar-circle'></i><span>Kazançlarım</span></a>
                             </li>
                             <li>
                                 <div class="dropdown-divider mb-0"></div>
                             </li>
-                            <li><a class="dropdown-item" href="javascript:;"><i
-                                        class='bx bx-log-out-circle'></i><span>Çıkış Yap</span></a>
+                            <li><a id="logout" class="dropdown-item" href="javascript:;"><i class='bx bx-log-out-circle'></i><span>Çıkış Yap</span></a>
                             </li>
                         </ul>
+                    </div>
+
+                    <div id="connectToMetamask" class="user-box">
+                        <a class="d-flex align-items-center nav-link" href="#" role="button">
+                            <img id="picture" src="../assets/images/metamask.png" class="user-img" alt="user avatar">
+                            <div class="user-info ps-3">
+                                <p id="fullname" class="user-name mb-0">Connect to Metamask</p>
+                            </div>
+                        </a>
                     </div>
                 </nav>
             </div>
@@ -211,14 +241,14 @@
 
                             <div class="mb-5 mt-3">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">Super Computer hizmetine onay
+                                    <input class="form-check-input" type="checkbox" value="" id="approveSuperComputer">
+                                    <label class="form-check-label" for="approveSuperCompute">Super Computer hizmetine onay
                                         veriyorum</label>
                                 </div>
                             </div>
 
-                            <div class="mb-5">
-                                <label for="customRange1" class="form-label">CPU Kaynak Kullanımı(1core-128core)</label>
+                            <div class="mb-2">
+                                <label for="rangeCpu" class="form-label">CPU Kaynak Kullanımı(1core-128core)</label>
 
                                 <div class="d-flex justify-content-between">
 
@@ -227,14 +257,16 @@
                                     </div>
 
                                     <div class="p-1">
-                                        100 Core
+                                        128 Core
                                     </div>
                                 </div>
-                                <input type="range" class="form-range" id="customRange1">
+                                <input type="range" class="form-range" id="rangeCpu" min="1" max="128" oninput="showRangeValue(this.value)" onchange="showRangeValue(this.value)">
                             </div>
-
+                            <div class="mb-5">
+                                <h5> <span id="selectedCpuRangeValue" class="badge bg-warning text-dark"></span> </h5>
+                            </div>
                             <div class="mb-3">
-                                <button class="btn btn-light" type="submit">Submit form</button>
+                                <button id="saveSuperComputer" class="btn btn-light" type="button">Save Changes</button>
                             </div>
 
                         </div>
@@ -257,6 +289,8 @@
         }
     </script>
 
+    <script src="../assets/js/walletConnect.js"></script>
+
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <!--plugins-->
     <script src="../assets/js/jquery.min.js"></script>
@@ -264,8 +298,18 @@
     <script src="../assets/plugins/input-tags/js/tagsinput.js"></script>
     <script src="../assets/plugins/metismenu/js/metisMenu.min.js"></script>
 
+    <!--notification js -->
+    <script src="../assets/plugins/notifications/js/lobibox.min.js"></script>
+    <script src="../assets/plugins/notifications/js/notifications.min.js"></script>
+    <script src="../assets/plugins/notifications/js/notification-custom-script.js"></script>
+
     <!--app JS-->
     <script src="../assets/js/app.js"></script>
+
+    <script src="../assets/js/index.js"></script>
+
+    <script src="../assets/js/pages/super.js"></script>
+
     <script>
         if (window.module) module = window.module;
     </script>
