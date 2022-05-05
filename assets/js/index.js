@@ -133,9 +133,3 @@ function savedSuccessNotify() {
         msg: 'Saved successfully.'
     });
 }
-
-
-
-
-
-// WalletConnect

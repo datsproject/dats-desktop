@@ -1,11 +1,11 @@
+const sigUtil = require('eth-sig-util');
+
 let account;
 
 // https://docs.walletconnect.com/quick-start/dapps/web3-provider
 let provider = new WalletConnectProvider.default({
     rpc: {
-        43113: "https://api.avax-test.network/ext/bc/C/rpc", // https://ethereumnodes.com/
-        //137: "https://polygon-rpc.com/", // https://docs.polygon.technology/docs/develop/network-details/network/
-        // ...
+        43113: "https://api.avax-test.network/ext/bc/C/rpc",
 
     },
     // bridge: 'https://bridge.walletconnect.org',
@@ -25,68 +25,12 @@ const connectWC = async() => {
     return account;
 }
 
-
 const sign = async(msg) => {
     if (w3) {
-        return await w3.eth.personal.sign(msg, account)
+        return await w3.eth.sign(w3.utils.sha3(msg), account)
     } else {
         return false
     }
-}
-
-const signTypedData = async(msgPrm) => {
-
-    const msgParams = [{
-            type: 'string',
-            name: 'Message',
-            value: 'Hi, Alice!'
-        },
-        {
-            type: 'uint32',
-            name: 'A number',
-            value: '1337'
-        }
-    ]
-
-    var from = web3.eth.accounts[0]
-    if (!from) return connect()
-
-    /*  web3.eth.signTypedData not yet implemented!!!
-     *  We're going to have to assemble the tx manually!
-     *  This is what it would probably look like, though:
-      web3.eth.signTypedData(msg, from) function (err, result) {
-        if (err) return console.error(err)
-        console.log('PERSONAL SIGNED:' + result)
-      })
-    */
-
-    console.log('CLICKED, SENDING PERSONAL SIGN REQ')
-    var params = [msgParams, from]
-    console.dir(params)
-    var method = 'eth_signTypedData'
-
-    web3.currentProvider.sendAsync({
-        method,
-        params,
-        from,
-    }, function(err, result) {
-        if (err) return console.dir(err)
-        if (result.error) {
-            alert(result.error.message)
-        }
-        if (result.error) return console.error(result)
-        console.log('PERSONAL SIGNED:' + JSON.stringify(result.result))
-
-        const recovered = sigUtil.recoverTypedSignatureLegacy({ data: msgParams, sig: result.result })
-
-        if (ethUtil.toChecksumAddress(recovered) === ethUtil.toChecksumAddress(from)) {
-            alert('Successfully ecRecovered signer as ' + from)
-        } else {
-            alert('Failed to verify signer when comparing ' + result + ' to ' + from)
-        }
-
-    })
-
 }
 
 const contract = async(abi, address) => {
@@ -100,11 +44,11 @@ const contract = async(abi, address) => {
 const disconnect = async() => {
     // Close provider session
     await provider.disconnect()
-    account = undefined;
 }
 
 provider.on("disconnect", (code, reason) => {
     console.log(code, reason);
+    account = undefined;
 });
 
 
