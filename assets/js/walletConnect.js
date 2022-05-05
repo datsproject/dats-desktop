@@ -1,4 +1,4 @@
-const sigUtil = require('eth-sig-util');
+//const sigUtil = require('eth-sig-util');
 
 let account;
 
