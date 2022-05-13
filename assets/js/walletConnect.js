@@ -1,9 +1,6 @@
-//const sigUtil = require('eth-sig-util');
-const address = "0x178cD1937f40BC6bba82453e664fA6eD9FC2655e" // DatsContract2
-const { contract_abi } = '../../services/contract-abi.json';
+const address = "0x178cD1937f40BC6bba82453e664fA6eD9FC2655e" // name: DatsProjectContract
 
 let account;
-
 let abi = null;
 
 // https://docs.walletconnect.com/quick-start/dapps/web3-provider
@@ -14,11 +11,6 @@ let provider = new WalletConnectProvider.default({
     },
     // bridge: 'https://bridge.walletconnect.org',
 });
-
-
-fetch('https://api.npoint.io/88101b6472674eaf2d5e')
-    .then(response => response.json())
-    .then(json => abi = json);
 
 
 const connectWC = async() => {

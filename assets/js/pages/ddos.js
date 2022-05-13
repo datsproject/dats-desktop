@@ -1,11 +1,16 @@
+const path = require("path");
+const fs = require("fs");
+
 const saveDdosButton = document.querySelector("#saveDdos");
 const processingDdosBtn = document.querySelector('#processingDdos');
 const approveDdosServiceSwitch = document.querySelector("#approveDdosService");
 const trafficScaleRangeInput = document.querySelector("#rangeMbit");
 const selectedTrafficScaleRangeValueSpan = document.querySelector("#selectedMbitRangeValue");
 
+abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
-webContents.once("did-finish-load", async() => {
+
+webContents.on("did-finish-load", async() => {
     await getDDos();
 });
 
@@ -26,6 +31,7 @@ async function saveDDos(isApprove, trafficScale, callback) {
 }
 
 async function getDDos() {
+
     const datsContract = await contract(abi, address);
     const ddosData = await datsContract.methods.getDDos().call({ from: account });
     if (ddosData) {
@@ -33,6 +39,7 @@ async function getDDos() {
         trafficScaleRangeInput.value = ddosData.trafficScale;
         showRangeValue(trafficScaleRangeInput.value);
     }
+
 }
 
 saveDdosButton.addEventListener('click', async() => {

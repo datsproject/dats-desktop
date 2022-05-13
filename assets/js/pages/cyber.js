@@ -1,3 +1,6 @@
+const path = require("path");
+const fs = require("fs");
+
 const saveCyberButton = document.querySelector("#saveCyber");
 const approveCyberSecurityResearchSwitch = document.querySelector("#switchApproveCyberSecurityResearch");
 const webSecurityCheckbox = document.querySelector("#chkWebSecurity");
@@ -5,8 +8,10 @@ const serverSecurityCheckbox = document.querySelector("#chkServerSecurity");
 const ransomwareResearchCheckbox = document.querySelector("#chkRansomwareResearch");
 const malwareResearchCheckbox = document.querySelector("#chkMalwareResearch");
 
+abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
-webContents.on("dom-ready", () => {
+
+webContents.on("did-finish-load", () => {
     loadData();
 });
 

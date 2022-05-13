@@ -1,8 +1,13 @@
+const path = require("path");
+const fs = require("fs");
+
 const saveSuperCompuerButton = document.querySelector("#saveSuperComputer");
 const processingSuperComputerBtn = document.querySelector('#processingSuperComputer');
 const approveSuperComputerSwitch = document.querySelector("#approveSuperComputer");
 const cpuValueRangeInput = document.querySelector("#rangeCpu");
 const selectedCpuRangeValueSpan = document.querySelector("#selectedCpuRangeValue");
+
+abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
 webContents.on("did-finish-load", async() => {
     await getSuperComputer();
@@ -25,6 +30,7 @@ async function saveSuperComputer(isApprove, cpuValue, callback) {
 }
 
 async function getSuperComputer() {
+
     const datsContract = await contract(abi, address);
     const superComputerData = await datsContract.methods.getSuperComputer().call({ from: account });
     if (superComputerData) {
@@ -59,6 +65,6 @@ saveSuperCompuerButton.addEventListener('click', async() => {
     }
     */
 
-    savedSuccessNotify();
+    //savedSuccessNotify();
     //checkNotifications();
 });
