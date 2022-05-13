@@ -1,35 +1,46 @@
+const path = require("path");
+const fs = require("fs");
+
 const saveBlockchainButton = document.querySelector('#saveBlockchain');
+const processingBlockchainButton = document.querySelector('#processingBlockchain');
 const approveAttackPreventionSwitch = document.querySelector('#switchApproveAttackPrevention');
 
+abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
-webContents.on("dom-ready", () => {
-    loadData();
+
+webContents.on("did-finish-load", async() => {
+    await getBlockchain();
 });
 
+async function saveBlockchain(isApprove, callback) {
 
-const loadData = () => {
-    if (localStorage.getItem("blockchain")) {
-        let blockchainData = JSON.parse(localStorage.blockchain);
-        approveAttackPreventionSwitch.checked = blockchainData.approveAttackPrevention;
-    }
+    saveBlockchainButton.classList.add("d-none");
+    processingBlockchainButton.classList.remove("d-none");
+
+    setTimeout(async() => {
+        const datsContract = await contract(abi, address);
+        await datsContract.methods.saveBlockchain(isApprove).send({ from: account });
+        callback(saveBlockchainButton, processingBlockchainButton);
+    }, 0);
 }
 
-saveBlockchainButton.addEventListener('click', () => {
+async function getBlockchain() {
 
-    const Blockchain = {
-        approveAttackPrevention: approveAttackPreventionSwitch.checked
-    };
+    setTimeout(async() => {
+        const datsContract = await contract(abi, address);
+        const blockchainData = await datsContract.methods.getBlockchain().call({ from: account });
+        if (blockchainData) {
+            approveAttackPreventionSwitch.checked = blockchainData.approveAttackPrevention;
+        }
+    }, 1000);
 
-    localStorage.removeItem("blockchain");
-    localStorage.setItem("blockchain", JSON.stringify(Blockchain));
+}
 
-    localStorage.notificationCount ? localStorage["notificationCount"] = parseInt(localStorage["notificationCount"]) + 1 : localStorage.setItem("notificationCount", 1);
-    alertCountSpan.innerHTML = localStorage["notificationCount"];
+saveBlockchainButton.addEventListener('click', async() => {
 
-    if (!alertCountSpan.classList.contains("alert-count")) {
-        alertCountSpan.classList.add("alert-count");
-    }
-
-    savedSuccessNotify();
-    checkNotifications();
+    await saveBlockchain(approveAttackPreventionSwitch.checked, (saveBtn, processingBtn) => {
+        savedSuccessNotify();
+        saveBtn.classList.remove("d-none");
+        processingBtn.classList.add("d-none");
+    });
 });

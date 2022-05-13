@@ -31,13 +31,15 @@ async function saveSuperComputer(isApprove, cpuValue, callback) {
 
 async function getSuperComputer() {
 
-    const datsContract = await contract(abi, address);
-    const superComputerData = await datsContract.methods.getSuperComputer().call({ from: account });
-    if (superComputerData) {
-        approveSuperComputerSwitch.checked = superComputerData.isApprove;
-        cpuValueRangeInput.value = superComputerData.cpuValue;
-        showRangeValue(cpuValueRangeInput.value);
-    }
+    setTimeout(async() => {
+        const datsContract = await contract(abi, address);
+        const superComputerData = await datsContract.methods.getSuperComputer().call({ from: account });
+        if (superComputerData) {
+            approveSuperComputerSwitch.checked = superComputerData.isApprove;
+            cpuValueRangeInput.value = superComputerData.cpuValue;
+            showRangeValue(cpuValueRangeInput.value);
+        }
+    }, 1000);
 }
 
 saveSuperCompuerButton.addEventListener('click', async() => {
