@@ -4,10 +4,6 @@ const approveDdosServiceSwitch = document.querySelector("#approveDdosService");
 const trafficScaleRangeInput = document.querySelector("#rangeMbit");
 const selectedTrafficScaleRangeValueSpan = document.querySelector("#selectedMbitRangeValue");
 
-fetch('https://api.npoint.io/88101b6472674eaf2d5e')
-    .then(response => response.json())
-    .then(json => abi = json);
-
 
 webContents.once("did-finish-load", async() => {
     await getDDos();
@@ -26,7 +22,7 @@ async function saveDDos(isApprove, trafficScale, callback) {
         const datsContract = await contract(abi, address);
         await datsContract.methods.saveDDos(isApprove, trafficScale).send({ from: account });
         callback(saveDdosButton, processingDdosBtn);
-    }, 3000);
+    }, 0);
 }
 
 async function getDDos() {
