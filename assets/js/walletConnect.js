@@ -1,6 +1,10 @@
 //const sigUtil = require('eth-sig-util');
+const address = "0x178cD1937f40BC6bba82453e664fA6eD9FC2655e" // DatsContract2
+const { contract_abi } = '../../services/contract-abi.json';
 
 let account;
+
+let abi = null;
 
 // https://docs.walletconnect.com/quick-start/dapps/web3-provider
 let provider = new WalletConnectProvider.default({
@@ -10,6 +14,11 @@ let provider = new WalletConnectProvider.default({
     },
     // bridge: 'https://bridge.walletconnect.org',
 });
+
+
+fetch('https://api.npoint.io/88101b6472674eaf2d5e')
+    .then(response => response.json())
+    .then(json => abi = json);
 
 
 const connectWC = async() => {
@@ -50,27 +59,3 @@ provider.on("disconnect", (code, reason) => {
     console.log(code, reason);
     account = undefined;
 });
-
-
-const address = "0x4b4f8ca8fb3e66b5ddafcebfe86312cec486dae1"
-let abi = [{
-    "inputs": [],
-    "name": "count",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "view",
-    "type": "function"
-}, {
-    "inputs": [],
-    "name": "increment",
-    "outputs": [{
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-    }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-}]
