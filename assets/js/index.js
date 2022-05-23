@@ -67,9 +67,10 @@ webContents.on("dom-ready", () => {
 
 });
 
-document.getElementById("logout").addEventListener("click", () => {
-    authProcess.createLogoutWindow();
-    remote.getCurrentWindow().close();
+document.getElementById("logout").addEventListener("click", async() => {
+    // authProcess.createLogoutWindow();
+    await disconnect();
+    remote.getCurrentWindow().reload();
 });
 
 
