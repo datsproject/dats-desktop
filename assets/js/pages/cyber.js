@@ -1,6 +1,3 @@
-const path = require("path");
-const fs = require("fs");
-
 const saveCyberButton = document.querySelector("#saveCyber");
 const processingCyberButton = document.querySelector("#processingCyber");
 const approveCyberSecurityResearchSwitch = document.querySelector("#switchApproveCyberSecurityResearch");
@@ -9,7 +6,7 @@ const serverSecurityCheckbox = document.querySelector("#chkServerSecurity");
 const ransomwareResearchCheckbox = document.querySelector("#chkRansomwareResearch");
 const malwareResearchCheckbox = document.querySelector("#chkMalwareResearch");
 
-abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
+contractAbi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
 
 webContents.on("did-finish-load", async() => {
@@ -23,8 +20,8 @@ async function saveCyber(isApprove, webSecurity, serverSecurity, ransomwareResea
     processingCyberButton.classList.remove("d-none");
 
     setTimeout(async() => {
-        const datsContract = await contract(abi, address);
-        await datsContract.methods.saveCyberSecurity(isApprove, webSecurity, serverSecurity, ransomwareResearch, malwareResearch).send({ from: account });
+        const datsContract = await contract(contractAbi, contractAddress);
+        await datsContract.saveCyberSecurity(isApprove, webSecurity, serverSecurity, ransomwareResearch, malwareResearch);
         callback(saveCyberButton, processingCyberButton);
     }, 0);
 }
@@ -32,8 +29,8 @@ async function saveCyber(isApprove, webSecurity, serverSecurity, ransomwareResea
 async function getCyber() {
 
     setTimeout(async() => {
-        const datsContract = await contract(abi, address);
-        const cyberData = await datsContract.methods.getCyberSecurity().call({ from: account });
+        const datsContract = await contract(contractAbi, contractAddress);
+        const cyberData = await datsContract.getCyberSecurity();
         if (cyberData) {
             approveCyberSecurityResearchSwitch.checked = cyberData.isApprove;
             webSecurityCheckbox.checked = cyberData.webSecurity;

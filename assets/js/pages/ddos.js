@@ -1,13 +1,10 @@
-const path = require("path");
-const fs = require("fs");
-
 const saveDdosButton = document.querySelector("#saveDdos");
 const processingDdosButton = document.querySelector('#processingDdos');
 const approveDdosServiceSwitch = document.querySelector("#approveDdosService");
 const trafficScaleRangeInput = document.querySelector("#rangeMbit");
 const selectedTrafficScaleRangeValueSpan = document.querySelector("#selectedMbitRangeValue");
 
-abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
+contractAbi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
 
 webContents.on("did-finish-load", async() => {
@@ -24,8 +21,8 @@ async function saveDDos(isApprove, trafficScale, callback) {
     processingDdosButton.classList.remove("d-none");
 
     setTimeout(async() => {
-        const datsContract = await contract(abi, address);
-        await datsContract.methods.saveDDos(isApprove, trafficScale).send({ from: account });
+        const datsContract = await contract(contractAbi, contractAddress);
+        await datsContract.saveDDos(isApprove, trafficScale);
         callback(saveDdosButton, processingDdosButton);
     }, 0);
 }
@@ -33,8 +30,8 @@ async function saveDDos(isApprove, trafficScale, callback) {
 async function getDDos() {
 
     setTimeout(async() => {
-        const datsContract = await contract(abi, address);
-        const ddosData = await datsContract.methods.getDDos().call({ from: account });
+        const datsContract = await contract(contractAbi, contractAddress);
+        const ddosData = await datsContract.getDDos();
         if (ddosData) {
             approveDdosServiceSwitch.checked = ddosData.isApprove;
             trafficScaleRangeInput.value = ddosData.trafficScale;

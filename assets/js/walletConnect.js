@@ -1,4 +1,6 @@
-const address = "0x178cD1937f40BC6bba82453e664fA6eD9FC2655e" // name: DatsProjectContract
+const address = "0x1392Ff116AD21094e2B98c8a19da62948a10303d"; // name: DatsContract
+//0x178cD1937f40BC6bba82453e664fA6eD9FC2655e
+//0x14c711514a8597af6adeDf35cfC84Af8A78F5aB7
 
 let account;
 let abi = null;
@@ -7,6 +9,7 @@ let abi = null;
 let provider = new WalletConnectProvider.default({
     rpc: {
         43113: "https://api.avax-test.network/ext/bc/C/rpc",
+        //65535: "http://144.91.97.243:9650/ext/bc/FnTgpjfC8HiCCZu35MCjRxT7oN6yjGHvvGJ3GaENMHxG2tJzL/rpc",
 
     },
     // bridge: 'https://bridge.walletconnect.org',

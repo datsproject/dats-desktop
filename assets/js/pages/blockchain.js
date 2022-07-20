@@ -1,11 +1,8 @@
-const path = require("path");
-const fs = require("fs");
-
 const saveBlockchainButton = document.querySelector('#saveBlockchain');
 const processingBlockchainButton = document.querySelector('#processingBlockchain');
 const approveAttackPreventionSwitch = document.querySelector('#switchApproveAttackPrevention');
 
-abi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
+contractAbi = JSON.parse(fs.readFileSync(path.join(__dirname, 'contract-abi.json'), 'utf-8'));
 
 
 webContents.on("did-finish-load", async() => {
@@ -18,8 +15,8 @@ async function saveBlockchain(isApprove, callback) {
     processingBlockchainButton.classList.remove("d-none");
 
     setTimeout(async() => {
-        const datsContract = await contract(abi, address);
-        await datsContract.methods.saveBlockchain(isApprove).send({ from: account });
+        const datsContract = await contract(contractAbi, contractAddress);
+        await datsContract.saveBlockchain(isApprove);
         callback(saveBlockchainButton, processingBlockchainButton);
     }, 0);
 }
@@ -27,8 +24,8 @@ async function saveBlockchain(isApprove, callback) {
 async function getBlockchain() {
 
     setTimeout(async() => {
-        const datsContract = await contract(abi, address);
-        const blockchainData = await datsContract.methods.getBlockchain().call({ from: account });
+        const datsContract = await contract(contractAbi, contractAddress);
+        const blockchainData = await datsContract.getBlockchain();
         if (blockchainData) {
             approveAttackPreventionSwitch.checked = blockchainData.approveAttackPrevention;
         }
